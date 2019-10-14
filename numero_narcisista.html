@@ -1,0 +1,16 @@
+<script>
+
+var start = prompt("Digite o numero desejado: ");
+var vet = start.split("");
+var somatorio = 0;
+
+for (i = 0; i < vet.length; i++) {
+	somatorio = somatorio + (vet[i] ** vet.length);
+}
+
+if (somatorio == start) {
+	document.write("É narcisista!");
+} else {
+	document.write("Nao é narcisista!");
+}
+</script>

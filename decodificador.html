@@ -1,0 +1,62 @@
+﻿<script>
+
+//funções
+function traducao (res, contr_trad) {
+	var saida = 0;
+	var aux = res[i];
+	if (contr_trad == 1 || contr_trad == 2) {
+		saida = res[i]%27;
+	} else {
+		saida = res[i]%9;
+	}
+	return saida;
+
+}
+
+//variaveis de controle
+var contr_trad = 1;
+var i,k;
+
+//variaveis de saida
+var resf = [];
+
+//vetores de tradução
+var alfaM = [0,"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var alfam = [0,"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var alfas = [0, "!" ,"?" , ",", ".", " ", ";", "\"", "'"];
+
+//varriaveis de leitura
+var entrada = prompt("Insira o código desejado. (Exemplo: 12,4878,121,54948,4498,48,48,4789,845,46,8)");
+var res = entrada.split(",");
+
+for (i = 0; i < res.length; i++) {
+
+	if  (res[i]%27 > 0 && contr_trad == 1) {
+	
+		k = traducao(res, contr_trad);
+		resf[i] = alfaM[k];
+	
+	} else if(res[i]%27 == 0 && contr_trad == 1) {
+		contr_trad = 2;
+
+	} else if  (res[i]%27 > 0 && contr_trad == 2) {
+	
+		k = traducao(res, contr_trad);
+		resf[i] = alfam[k];
+	
+	} else if (res[i]%27 == 0 && contr_trad == 2) {
+		contr_trad = 3;
+
+	} else if (contr_trad == 3) {
+	
+		k = traducao(res, contr_trad);
+		resf[i] = alfas[k];
+	
+	} else if (res[i]%9 == 0 && contr_trad == 3) {
+		contr_trad = 1;
+	}
+}
+
+document.write(resf);
+
+</script>

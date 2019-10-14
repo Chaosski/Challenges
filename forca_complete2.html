@@ -1,0 +1,64 @@
+﻿<script>
+
+function selecao_de_palavra (numero) {
+
+	var vet_palavras = ["cabana", "cavalo", "revista", "jaleco", "janela", "jesus", "marcelo", "refrigerante", "apartamento", "perna"];
+	var palavra = vet_palavras[numero];
+	var palavra_to_vet = palavra.split("");
+	return palavra_to_vet;
+}
+
+var vet_dicas = ["tipo de moradia", "vaqueiros o montam", "vendida em banca", "medicos o usam", "toda casa tem","principal profeta", "quem criou esse jogo?", "coca, fanta e guaraná sao exemplos", "o que se encontra em predios?", "parte do corpo"];
+var x = 0;
+var letra;
+
+while (x == 0) {
+
+	var cntrl_acertos = false;
+	var controle_letra_errada = 0;
+	var letras_corretas = [];
+	var letras_erradas = [];
+	var numero = Math.round(Math.random() * 10);
+	var palavra_selecionada = selecao_de_palavra(numero);
+	var vidas = 7;
+	var cntrl_fim_jogo = 0;
+
+	for (k = 0; k < palavra_selecionada.length; k++) {
+		letras_corretas[k] = "_";
+	}
+
+	alert("Tamanho da palavra: " + palavra_selecionada.length + "\nLetras certas: " + letras_corretas + "\nLetras Erradas: " + letras_erradas + "\nVidas: " + vidas);
+
+	while (vidas > 0) {
+		if (vidas == 1) {
+			alert("Dica: " + vet_dicas[numero]);
+		}
+		letra = prompt("Digite uma letra: ");
+		letra = letra.toLowerCase();
+
+		for (i = 0; i < palavra_selecionada.length; i++) {
+			if (letra == palavra_selecionada[i]) {
+				letras_corretas[i] = letra;
+				cntrl_fim_jogo++;
+				cntrl_acertos = true;
+				letras_erradas.pop();
+			}	else if (cntrl_acertos == false) {
+				letras_erradas[controle_letra_errada] = letra;
+			}
+		}
+		if (cntrl_acertos == false) {
+			vidas--;
+			controle_letra_errada++;
+		}
+
+		cntrl_acertos = false;
+		alert("Tamanho da palavra: " + palavra_selecionada.length + "\nLetras certas: " + letras_corretas + "\nLetras Erradas: " + letras_erradas + "\nVidas: " + vidas);
+		if (cntrl_fim_jogo == letras_corretas.length) {
+			alert("Parabens, voce ganhou!");
+			break;
+		} else if (vidas == 0) {
+			alert("Voce perdeu! ;-;");
+		}
+	}
+}
+</script>
